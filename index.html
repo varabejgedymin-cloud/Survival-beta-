@@ -1,197 +1,262 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Выживание среди их — Скачать Beta</title>
-<style>
-  :root {
-    --bg-color: #0b0c10;
-    --card-bg: #1f2833;
-    --text-color: #c5c6c7;
-    --accent-color: #66fcf1;
-    --accent-hover: #45a29e;
-    --danger-color: #e74c3c;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .container {
-    max-width: 900px;
-    width: 100%;
-  }
-
-  header {
-    text-align: center;
-    padding: 40px 0 20px;
-    border-bottom: 2px solid var(--card-bg);
-  }
-
-  h1 {
-    color: var(--accent-color);
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .badge {
-    background-color: var(--danger-color);
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    display: inline-block;
-  }
-
-  .main-content {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .card {
-    background-color: var(--card-bg);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-
-  h2 {
-    color: #fff;
-    margin-bottom: 15px;
-    border-left: 4px solid var(--accent-color);
-    padding-left: 10px;
-  }
-
-  ul {
-    list-style-position: inside;
-    margin-bottom: 15px;
-  }
-
-  li {
-    margin-bottom: 8px;
-  }
-
-  .download-section {
-    text-align: center;
-    background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
-    border: 1px solid var(--accent-color);
-  }
-
-  .btn-download {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: #0b0c10;
-    font-weight: bold;
-    font-size: 1.2rem;
-    padding: 15px 40px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-download:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 252, 241, 0.4);
-  }
-
-  .info-text {
-    font-size: 0.85rem;
-    color: #888;
-    margin-top: 12px;
-  }
-
-  footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    color: #666;
-    font-size: 0.9rem;
-  }
-
-  @media (min-width: 600px) {
-    .main-content {
-      grid-template-columns: 2fr 1fr;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Выживание среди их — Бета-тестирование</title>
+  <style>
+    /* CSS СТИЛИ */
+    :root {
+      --bg-color: #0b0c10;
+      --panel-bg: rgba(18, 22, 28, 0.85);
+      --accent-red: #e74c3c;
+      --accent-red-hover: #c0392b;
+      --accent-gold: #f39c12;
+      --text-main: #e0e6ed;
+      --text-muted: #95a5a6;
+      --border-color: #2c3e50;
     }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(231, 76, 60, 0.15), transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(20, 50, 72, 0.2), transparent 50%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(11,12,16,0) 100%);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-red);
+      color: #fff;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      font-weight: 500;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--accent-red);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--text-main);
+      font-size: 1.05rem;
+    }
+
+    .features-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .features-list li {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 4px solid var(--accent-gold);
+      padding: 12px 15px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .district-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: rgba(52, 73, 94, 0.6);
+      color: #ecf0f1;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Секция скачивания */
     .download-section {
-      grid-column: span 2;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(18, 22, 28, 0.9) 100%);
+      border: 1px solid var(--accent-red);
     }
-  }
-</style>
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--accent-red);
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    .download-btn:hover {
+      background: var(--accent-red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+    }
+
+    .download-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .card { padding: 20px; }
+      .download-btn { width: 100%; padding: 15px 20px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
   <header>
+    <span class="badge">Бета-версия v0.2</span>
     <h1>Выживание среди их</h1>
-    <span class="badge">BETA v0.2</span>
+    <p class="subtitle">Попробуй выжить в опасных микрорайонах Вавера</p>
   </header>
 
-  <div class="main-content">
-    <div class="card">
+  <main>
+    <!-- Описание игры -->
+    <section class="card">
       <h2>Об игре</h2>
-      <p>Окунитесь в атмосферный 3D-экшен с элементами выживания и хоррора, разворачивающийся в районе Вавер (Варшава). Вы оказываетесь в роли обычного скитальца, вынужденного бороться за жизнь в опасном и недружелюбном окружении.</p>
-    </div>
-
-    <div class="card">
-      <h2>Локации</h2>
-      <ul>
-        <li>Anin</li>
-        <li>Wawer</li>
-        <li>Sadul</li>
-        <li>Międzylesie</li>
-        <li>Marysin Wawerski</li>
-      </ul>
-    </div>
-
-    <div class="card" style="grid-column: span 2;">
-      <h2>Основные особенности</h2>
-      <ul>
-        <li><strong>Выживание:</strong> Ищите еду и воду в мусорных баках и заброшенных домах, чтобы не умереть от голода.</li>
-        <li><strong>Опасности:</strong> Избегайте диких животных, враждебно настроенных персонажей и аномальных SCP-сущностей.</li>
-        <li><strong>Торговля и задания:</strong> Взаимодействуйте с торговцами, выполняйте их поручения и получайте ценные ресурсы.</li>
-        <li><strong>Мультиплеер:</strong> Исследуйте мир в одиночку или объединяйтесь с друзьями в сетевом режиме.</li>
-      </ul>
-    </div>
-
-    <div class="card download-section">
-      <h2>Скачать Бета-версию</h2>
-      <p>Готовы проверить свои навыки выживания? Загрузите последнюю бета-версию прямо сейчас!</p>
+      <p>
+        <strong>«Выживание среди их»</strong> — это симулятор выживания с видом от первого и третьего лица, 
+        погружающий вас в суровые будни бездомного в районе Вавер (Варшава). 
+      </p>
+      <p>
+        Вам предстоит бороться за жизнь: искать пропитание в мусорных баках, следить за уровнем здоровья, голода, 
+        жажды и энергии, а также отбиваться или скрываться от смертельных угроз.
+      </p>
       
-      <!-- Ссылка ведет на встроенный файл выживание-среди-их.html из проекта -->
-      <a href="vyživanie-sredi-ikh.html" download="vyživanie-sredi-ikh.html" class="btn-download">
-        🎮 Скачать Играть (HTML / Beta)
+      <div style="margin-top: 20px;">
+        <strong style="color: #fff;">Доступные микрорайоны:</strong>
+        <div class="district-tags">
+          <span class="tag">Anin</span>
+          <span class="tag">Wawer</span>
+          <span class="tag">Sadul</span>
+          <span class="tag">Międzylesie</span>
+          <span class="tag">Marysin Wawerski</span>
+          <span class="tag">Las Sobieskiego</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Особенности беты -->
+    <section class="card">
+      <h2>Ключевые особенности</h2>
+      <ul class="features-list">
+        <li>🍖 <strong>Менеджмент ресурсов:</strong> Следите за показателями ХП, голода, воды и энергии.</li>
+        <li>👾 <strong>Опасные враги:</strong> Избегайте сущностей SCP, диких животных и агрессивных местных жителей.</li>
+        <li>🛒 <strong>Торговля и задания:</strong> Находите торговцев, выполняйте их поручения и обменивайте лут.</li>
+        <li>🌐 <strong>Мультиплеер и сервера:</strong> Играйте в одиночку или создавайте комнаты для игры с друзьями.</li>
+        <li>🗺️ <strong>Редактор карт:</strong> Создавайте собственные локации и пробывайте их в действии.</li>
+        <li>🪓 <strong>Крафт и стройка:</strong> Создавайте инструменты, оружие и укрепляйте свои убежища.</li>
+      </ul>
+    </section>
+
+    <!-- Скачивание -->
+    <section class="card download-section">
+      <h2>Скачать бета-версию</h2>
+      <p>Игра доступна в формате готового веб-файла. Вы можете скачать её и запустить прямо в любом браузере (на ПК или телефоне) без установки сторонних программ!</p>
+
+      <!-- Укажите верный путь к вашему HTML файлу в атрибуте href -->
+      <a href="vyživanie-sredi-ikh (2).html" download class="download-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Скачать Бету (.html)
       </a>
 
-      <p class="info-text">Формат: Standalone HTML (запускается в любом браузере на ПК и мобильных устройствах)</p>
-    </div>
-  </div>
+      <div class="download-info">
+        Файл: <code>vyživanie-sredi-ikh (2).html</code> | Запуск: любой современный браузер
+      </div>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2026 Выживание среди их. Все права защищены.
+    &copy; Выживание среди их. Все права защищены. Разработка бета-версии.
   </footer>
-</div>
 
 </body>
 </html>
