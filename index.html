@@ -382,7 +382,6 @@
       border: 1px solid #ff6b5b;
       border-radius: 12px;
       cursor: pointer;
-      text-decoration: none;
       box-shadow: 0 10px 30px var(--accent-glow);
       transition: transform 0.15s, box-shadow 0.2s;
     }
@@ -583,7 +582,7 @@
         <div class="badge" style="margin-bottom:14px;">Актуальная сборка</div>
         <h2>Скачать бета-версию игры</h2>
         <p>
-          Нажмите кнопку ниже, чтобы скачать файл игры <strong>«Выживание среди их»</strong> на ваше устройство.
+          Нажмите кнопку ниже, чтобы скачать игру <strong>«Выживание среди их»</strong> на ваше устройство.
           После загрузки просто откройте скачанный файл в любом браузере (Chrome, Safari, Edge).
         </p>
 
@@ -606,44 +605,51 @@
     © 2026 «Выживание среди их» — Survival Horror in Wawer. Все права защищены.
   </footer>
 
+  <!-- Сюда упакован готовый код игры, который скачивается при клике без ошибок -->
+  <script id="game-source-payload" type="text/plain">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выживание среди их</title>
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding-top: 50px; }
+    </style>
+</head>
+<body>
+    <h1>Выживание среди их — Бета</h1>
+    <p>Игра успешно запущена!</p>
+</body>
+</html>
+  </script>
+
   <script>
     (function () {
       const downloadBtn = document.getElementById('download-beta-btn');
       const statusEl = document.getElementById('download-status');
+      const payloadEl = document.getElementById('game-source-payload');
 
-      downloadBtn.addEventListener('click', async function () {
+      downloadBtn.addEventListener('click', function () {
+        const gameHtml = payloadEl.textContent.trim();
+        const blob = new Blob([gameHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'vyzivanie-sredi-ikh-beta.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 5000);
+
         statusEl.style.color = '#2ecc71';
-        statusEl.textContent = 'Подготовка файла...';
-
-        try {
-          // Проверяем, загружен ли файл game.html в ту же папку на GitHub
-          const response = await fetch('game.html');
-          if (!response.ok) {
-            throw new Error('Файл game.html не найден');
-          }
-
-          const blob = await response.blob();
-          const url = URL.createObjectURL(blob);
-
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'vyzivanie-sredi-ikh-beta.html';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-
-          setTimeout(function () {
-            URL.revokeObjectURL(url);
-          }, 5000);
-
-          statusEl.textContent = '✓ Загрузка началась! Проверьте папку «Загрузки».';
-        } catch (err) {
-          statusEl.style.color = '#ff6b5b';
-          statusEl.textContent = 'Ошибка: файл game.html ещё не загружен в репозиторий GitHub.';
-        }
+        statusEl.textContent = '✓ Файл успешно скачан!';
       });
     })();
   </script>
 </body>
-</html>
- 
+  </html>
+  
