@@ -37,7 +37,6 @@
         linear-gradient(180deg, #08090c 0%, #050608 100%);
     }
 
-    /* Эффект лёгкой виньетки и плёночного шума */
     body::before {
       content: "";
       position: fixed;
@@ -47,7 +46,6 @@
       z-index: 50;
     }
 
-    /* Навигация */
     header {
       position: sticky;
       top: 0;
@@ -108,7 +106,6 @@
       color: #fff;
     }
 
-    /* Hero блок */
     .hero {
       max-width: 1120px;
       margin: 0 auto;
@@ -195,7 +192,6 @@
       background: #161922;
     }
 
-    /* Секции */
     section {
       max-width: 1120px;
       margin: 0 auto;
@@ -217,7 +213,6 @@
       max-width: 650px;
     }
 
-    /* Сетка карточек */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -254,7 +249,6 @@
       color: var(--muted);
     }
 
-    /* Локации Вавера */
     .zones-list {
       display: flex;
       flex-wrap: wrap;
@@ -275,7 +269,6 @@
       color: #ff7666;
     }
 
-    /* Секция геймплея / превью HUD */
     .gameplay-box {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -348,7 +341,6 @@
       color: #fff;
     }
 
-    /* Финальный блок скачивания */
     .download-section {
       text-align: center;
       padding: 80px 20px 100px;
@@ -390,6 +382,7 @@
       border: 1px solid #ff6b5b;
       border-radius: 12px;
       cursor: pointer;
+      text-decoration: none;
       box-shadow: 0 10px 30px var(--accent-glow);
       transition: transform 0.15s, box-shadow 0.2s;
     }
@@ -448,7 +441,6 @@
   </header>
 
   <main>
-    <!-- Главный экран -->
     <div class="hero">
       <div class="badge">3D Survival Horror · Open Beta v0.2</div>
       <h1>ВЫЖИВАНИЕ СРЕДИ ИХ</h1>
@@ -462,7 +454,6 @@
       </div>
     </div>
 
-    <!-- Описание мира и сюжета -->
     <section id="about">
       <h2 class="section-title">О мире игры</h2>
       <p class="section-sub">
@@ -503,7 +494,6 @@
       </div>
     </section>
 
-    <!-- Геймплей -->
     <section id="gameplay">
       <h2 class="section-title">Геймплей и механики</h2>
       <p class="section-sub">
@@ -538,7 +528,6 @@
           </li>
         </ul>
 
-        <!-- Имитация игрового интерфейса -->
         <div class="hud-preview">
           <div style="font-size:12px; color:#8b92a5; margin-bottom:14px; display:flex; justify-content:space-between;">
             <span>HUD ВЫЖИВШЕГО</span>
@@ -565,7 +554,6 @@
       </div>
     </section>
 
-    <!-- Дополнительные фичи -->
     <section id="features">
       <h2 class="section-title">Что есть в бета-версии</h2>
       <p class="section-sub">
@@ -590,7 +578,6 @@
       </div>
     </section>
 
-    <!-- Финальный блок: Скачать бета-версию -->
     <section id="download" class="download-section">
       <div class="download-card">
         <div class="badge" style="margin-bottom:14px;">Актуальная сборка</div>
@@ -619,52 +606,44 @@
     © 2026 «Выживание среди их» — Survival Horror in Wawer. Все права защищены.
   </footer>
 
-  <!-- Скрытый контейнер с исходным кодом вашей игры -->
-  <script id="game-source-payload" type="text/plain">
-/* ВСТАВЬТЕ_СЮДА_ВЕСЬ_КОД_ВАШЕЙ_ИГРЫ (из файла vyživanie-sredi-ikh 3 .html) */
-  </script>
-
   <script>
     (function () {
       const downloadBtn = document.getElementById('download-beta-btn');
       const statusEl = document.getElementById('download-status');
-      const payloadEl = document.getElementById('game-source-payload');
 
-      downloadBtn.addEventListener('click', function () {
-        const gameHtml = payloadEl.textContent.trim();
+      downloadBtn.addEventListener('click', async function () {
+        statusEl.style.color = '#2ecc71';
+        statusEl.textContent = 'Подготовка файла...';
 
-        // Проверяем, вставлен ли полный код игры
-        if (!gameHtml || gameHtml.startsWith('/* ВСТАВЬТЕ_СЮДА')) {
-          // Если файл игры лежит рядом на хостинге — скачиваем его напрямую по ссылке
-          const fallbackLink = document.createElement('a');
-          fallbackLink.href = 'vyživanie-sredi-ikh 3 .html';
-          fallbackLink.download = 'vyzivanie-sredi-ikh-beta.html';
-          document.body.appendChild(fallbackLink);
-          fallbackLink.click();
-          document.body.removeChild(fallbackLink);
+        try {
+          // Проверяем, загружен ли файл game.html в ту же папку на GitHub
+          const response = await fetch('game.html');
+          if (!response.ok) {
+            throw new Error('Файл game.html не найден');
+          }
 
-          statusEl.textContent = 'Запуск загрузки файла vyživanie-sredi-ikh 3 .html...';
-          return;
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'vyzivanie-sredi-ikh-beta.html';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 5000);
+
+          statusEl.textContent = '✓ Загрузка началась! Проверьте папку «Загрузки».';
+        } catch (err) {
+          statusEl.style.color = '#ff6b5b';
+          statusEl.textContent = 'Ошибка: файл game.html ещё не загружен в репозиторий GitHub.';
         }
-
-        // Упаковываем игру в Blob и мгновенно скачиваем как готовый файл
-        const blob = new Blob([gameHtml], { type: 'text/html;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'vyzivanie-sredi-ikh-beta.html';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        setTimeout(function () {
-          URL.revokeObjectURL(url);
-        }, 5000);
-
-        statusEl.textContent = '✓ Бета-версия игры скачивается (vyzivanie-sredi-ikh-beta.html)!';
       });
     })();
   </script>
 </body>
 </html>
+ 
